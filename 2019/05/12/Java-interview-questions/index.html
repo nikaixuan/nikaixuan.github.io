@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Java,">
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="Hi, welcome to my personal blog.你好，欢迎来到我的博客。">
+<meta name="description" content="Java面试基础知识总结（持续更新） Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My first blog">
-<meta property="og:url" content="http://kaixuanni.com/2019/05/12/My-first-blog/index.html">
+<meta property="og:title" content="Java interview questions">
+<meta property="og:url" content="http://kaixuanni.com/2019/05/12/Java-interview-questions/index.html">
 <meta property="og:site_name" content="Kai&#39;s blog">
-<meta property="og:description" content="Hi, welcome to my personal blog.你好，欢迎来到我的博客。">
+<meta property="og:description" content="Java面试基础知识总结（持续更新） Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2019-05-12T01:30:33.773Z">
+<meta property="og:updated_time" content="2019-05-12T13:14:54.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My first blog">
-<meta name="twitter:description" content="Hi, welcome to my personal blog.你好，欢迎来到我的博客。">
+<meta name="twitter:title" content="Java interview questions">
+<meta name="twitter:description" content="Java面试基础知识总结（持续更新） Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://kaixuanni.com/2019/05/12/My-first-blog/">
+  <link rel="canonical" href="http://kaixuanni.com/2019/05/12/Java-interview-questions/">
 
 
 
 
 
-  <title>My first blog | Kai's blog</title>
+  <title>Java interview questions | Kai's blog</title>
   
 
 
@@ -272,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kaixuanni.com/2019/05/12/My-first-blog/">
+    <link itemprop="mainEntityOfPage" href="http://kaixuanni.com/2019/05/12/Java-interview-questions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kaixuan Ni">
@@ -289,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">My first blog</h1>
+          <h1 class="post-title" itemprop="name headline">Java interview questions</h1>
         
 
         <div class="post-meta">
@@ -301,7 +302,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T11:25:28+10:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T12:23:32+10:00">
                 2019-05-12
               </time>
             
@@ -311,6 +312,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -339,7 +362,16 @@
       
 
       
-        <p>Hi, welcome to my personal blog.<br>你好，欢迎来到我的博客。</p>
+        <p><strong>Java面试基础知识总结（持续更新）</strong></p>
+<h2 id="Key-of-HashMap"><a href="#Key-of-HashMap" class="headerlink" title="Key of HashMap"></a>Key of HashMap</h2><p>Primitive type 不能做为 HashMap 的key，编译无法通过。<br>源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，<strong>数组也可以</strong>。<br>如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。<br>根据HashMap的原理，做为key的reference type需要实现<strong>hashCode()</strong>和<strong>equals()</strong>方法才有意义，否则虽然不会出现异常，但在HashMap中不会发生hash collide，失去了选择此数据结构的意义。</p>
+<h2 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h2><p>HashMap最多允许一条Entity的key为null，多个value可以为null。<br>HashMap线程不安全。</p>
+<p><strong>HashMap的基本盘：</strong><br>Array of linkedlist (Red-Black tree)，兼具两者易寻址和易插入的优点。调整hashCode()方法会使元素在Map中均匀分布，达到效率存取查找。</p>
+<p><strong>put实现原理：</strong><br>初始化时包含若干桶（bucket），数量（initialCapacity）默认为16，每个桶中是一个链表结构，元素存放在链表中。put操作时，先调用元素的<strong>hashCode()</strong>方法，获取元素的hashcode，然后对hashcode进行&amp;运算（当bucket数组的长度总是nth power of 2时，等价于取模并更高效），算出hashcode对应的bucket。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//jdk1.8 &amp; jdk1.7：</span><br><span class="line">static final int hash(Object key) &#123;</span><br><span class="line">     int h;</span><br><span class="line">     return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);</span><br><span class="line">&#125;</span><br><span class="line">//before jdk1.8：</span><br><span class="line">static int indexFor(int h, int length) &#123;</span><br><span class="line">     return h &amp; (length-1);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来会在对应的bucket上进行迭代，用equals()方法对比新元素与已存在的key，如果相等就更新value，没有相同元素会将新元素插入链表末尾。jdk1.8下，当链表长度大于8时，链表会转化为红黑树treeNode，插入键值对。</p>
+<p><strong>resize实现原理：</strong><br>当Map中元素数量等于设定的threshold时，Map会进行扩容。两步走：1.创建一个nth power of 2的且长度大于原长度的新数组。2.调用transfer()方法重新计算hash值在新长度下的位置。</p>
+<p><strong>get实现原理：</strong><br>根据key的hashcode找到相对的bucket，遍历linkedlist寻找对应的key并返回value。</p>
+<p><strong>为什么HashMap的长度总是2的n次方？</strong><br>1.不同hash值发生碰撞的概率小，元素在数据结构中分布均匀，提高效率。<br>2.方便使用更快的与操作代替取模。</p>
 
       
     </div>
@@ -355,6 +387,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
 
       
       
@@ -364,15 +402,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/12/My-first-blog/" rel="next" title="My first blog">
+                <i class="fa fa-chevron-left"></i> My first blog
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/12/Java-interview-questions/" rel="prev" title="Java interview questions">
-                Java interview questions <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,8 +462,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Kaixuan Ni">
           <p class="site-author-name" itemprop="name">Kaixuan Ni</p>
@@ -485,6 +532,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-of-HashMap"><span class="nav-number">1.</span> <span class="nav-text">Key of HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap原理"><span class="nav-number">2.</span> <span class="nav-text">HashMap原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
