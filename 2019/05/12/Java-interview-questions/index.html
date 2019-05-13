@@ -97,14 +97,14 @@
 <meta name="description" content="Java面试基础知识总结之Map Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为ke">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java interview questions">
+<meta property="og:title" content="Java Map summary">
 <meta property="og:url" content="http://kaixuanni.com/2019/05/12/Java-interview-questions/index.html">
 <meta property="og:site_name" content="Kai&#39;s blog">
 <meta property="og:description" content="Java面试基础知识总结之Map Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为ke">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2019-05-12T14:07:46.368Z">
+<meta property="og:updated_time" content="2019-05-13T01:18:56.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java interview questions">
+<meta name="twitter:title" content="Java Map summary">
 <meta name="twitter:description" content="Java面试基础知识总结之Map Key of HashMapPrimitive type 不能做为 HashMap 的key，编译无法通过。源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，数组也可以。如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。根据HashMap的原理，做为ke">
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>Java interview questions | Kai's blog</title>
+  <title>Java Map summary | Kai's blog</title>
   
 
 
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java interview questions</h1>
+          <h1 class="post-title" itemprop="name headline">Java Map summary</h1>
         
 
         <div class="post-meta">
@@ -364,16 +364,24 @@
       
         <p><strong>Java面试基础知识总结之Map</strong></p>
 <h2 id="Key-of-HashMap"><a href="#Key-of-HashMap" class="headerlink" title="Key of HashMap"></a>Key of HashMap</h2><p>Primitive type 不能做为 HashMap 的key，编译无法通过。<br>源码中，HashMap使用范型K V定义key和value的类型，所以接口，抽象类，实体类都可以做为key，<strong>数组也可以</strong>。<br>如果选择接口作为HashMap的key，向map中put元素时只能put实现接口的实体类或抽象类的实现。<br>根据HashMap的原理，做为key的reference type需要实现<strong>hashCode()</strong>和<strong>equals()</strong>方法才有意义，否则虽然不会出现异常，但在HashMap中不会发生hash collide，失去了选择此数据结构的意义。</p>
-<h2 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h2><p>HashMap最多允许一条Entity的key为null，多个value可以为null。<br>HashMap线程不安全。<br>HashMap是fail-fast的，用modCount来记录与对比修改次数。</p>
+<h2 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h2><p>HashMap最多允许一条Entity的key为null，多个value可以为null。<br>HashMap线程不安全。<br>HashMap是fail-fast的，用modCount来记录与对比修改次数。<br>JDK1.8中新HashMap主要变化在于链表长度大于8时会引入红黑树，插入链表变成插入节点，插入节点时会尝试调用compare方法比较key，所以新HashMap要想有效率就要实现compare方法。</p>
 <p><strong>HashMap的基本盘：</strong><br>Array of linkedlist (Red-Black tree)，兼具两者易寻址和易插入的优点。调整hashCode()方法会使元素在Map中均匀分布，达到效率存取查找。</p>
 <p><strong>put实现原理：</strong><br>初始化时包含若干桶（bucket），数量（initialCapacity）默认为16，每个桶中是一个链表结构，元素存放在链表中。put操作时，先调用元素的<strong>hashCode()</strong>方法，获取元素的hashcode，然后对hashcode进行&amp;运算（当bucket数组的长度总是nth power of 2时，等价于取模并更高效），算出hashcode对应的bucket。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//jdk1.8 &amp; jdk1.7：</span><br><span class="line">static final int hash(Object key) &#123;</span><br><span class="line">     int h;</span><br><span class="line">     return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);</span><br><span class="line">&#125;</span><br><span class="line">//before jdk1.8：</span><br><span class="line">static int indexFor(int h, int length) &#123;</span><br><span class="line">     return h &amp; (length-1);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来会在对应的bucket上进行迭代，用equals()方法对比新元素与已存在的key，如果相等就更新value，没有相同元素会将新元素插入链表末尾。jdk1.8下，当链表长度大于8时，链表会转化为红黑树treeNode，插入键值对。</p>
+<p>接下来会在对应的bucket上进行迭代，用equals()方法对比新元素与已存在的key，如果相等就更新value，没有相同元素会将新元素插入链头（最早的元素在末尾）。jdk1.8下，当链表长度大于8时，链表会转化为红黑树treeNode，插入键值对。</p>
 <p><strong>resize实现原理：</strong><br>当Map中元素数量等于设定的threshold时，Map会进行扩容。两步走：1.创建一个nth power of 2的且长度大于原长度的新数组。2.调用transfer()方法重新计算hash值在新长度下的位置。</p>
 <p><strong>get实现原理：</strong><br>根据key的hashcode找到相对的bucket，遍历linkedlist寻找对应的key并返回value。</p>
 <p><strong>为什么HashMap的长度总是2的n次方？</strong><br>1.不同hash值发生碰撞的概率小，元素在数据结构中分布均匀，提高效率。<br>2.方便使用更快的与操作代替取模。</p>
 <h2 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h2><p><strong>与HashMap的不同点：</strong><br>1.key与value均不允许为null<br>2.计算bucket位置时直接取余<br>3.先检查是否需要扩容再添加元素<br>4.put，get方法是synchronized<br>5.HashTable继承于Dictionary（均为legacy），HashMap继承于AbstractMap，实现Map接口<br>6.HashTable默认长度为11，扩容时为原长度2倍+1，效率不如HashMap的2的n次方<br>7.虽然线程安全，不如ConcurrentHashMap</p>
-<h2 id="Map之ConcurrentHashMap"><a href="#Map之ConcurrentHashMap" class="headerlink" title="Map之ConcurrentHashMap"></a>Map之ConcurrentHashMap</h2><p><strong>HashMap的问题：</strong></p>
+<h2 id="Map之ConcurrentHashMap"><a href="#Map之ConcurrentHashMap" class="headerlink" title="Map之ConcurrentHashMap"></a>Map之ConcurrentHashMap</h2><p><strong>HashMap的问题：</strong><br>在链表调用transfer()和resize()时，多线程同步向链表中插入元素会导致循环链表，从而导致HashMap操作时死循环（链表无法迭代完成）。JDK1.8中链表转为红黑树后没有此问题，但仍然线程不安全。<br>引起死循环的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    Entry&lt;K,V&gt; next = e.next; </span><br><span class="line">    int i = indexFor(e.hash, newCapacity);</span><br><span class="line">    e.next = newTable[i];</span><br><span class="line">    newTable[i] = e;</span><br><span class="line">    e = next;</span><br><span class="line">&#125; while (e != null);</span><br></pre></td></tr></table></figure></p>
+<p><strong>ConcurrentHashMap的实现原理（mechanism）：</strong><br>1.分段锁<strong>Segment locking or bucket locking</strong>：ConcurrentHashMap has several <strong>segments</strong>, every segement contains several buckets, and every bucket contains a linkedlist with many HashEntry.<br>The default number of segment is 16. So the concurrency level of ConcurrentHashMap is 16.<br>Every segment is a small HashMap with <strong>volatile</strong> entry bucket and element count. As long as the operation happens in different segments, it is thread-safe.</p>
+<p>2.HashEntry&lt;K,V&gt;：segment保证了不同segment之间操作的线程安全，而HashEntry保证了segment内的线程安全。HashEntry中的key，hash值和next指针全部用final修饰（HashMap中只有hash和key用final修饰），初始化后不可改变，保证了只能在链表头添加新节点。如果要删除节点，就要将此节点前的链表复制（new+copy），并且指向被删除节点的next。同时，HashEntry的value用volatile修饰，保证多线程间同步最新的值。从而实现不用synchronized的线程安全。</p>
+<p><strong>put实现原理：</strong><br>通过hash值高位（high-order position）找到对应的segment，对此segemnt上锁，segment中的put操作于HashMap中相同（取与定位调用equals()）。</p>
+<p><strong>resize实现原理：</strong><br>由于每个entry的next指针是final的，本质仍然是根据rehash的结果创建新的table和链表。但为了高效，创建前会在每个链表中寻找在新table处在同一bucket的子链，直接把子链添加到新table相应位置。</p>
+<p><strong>get实现原理：</strong><br>找到对应segment，读取对应值。<br>注意：ConcurremtMap的key和value都不能为null。resize()可能导致key存在但value为null，此时代码会进行加锁重读。</p>
+<p><strong>跨段操作（需要多个segemnt的数据）</strong><br>例如：containsKey(),size()<br>整个Map会在没有锁的情况下进行尝试，如果有锁会retry</p>
+<h2 id="LinkedHashMap-and-TreeMap"><a href="#LinkedHashMap-and-TreeMap" class="headerlink" title="LinkedHashMap and TreeMap"></a>LinkedHashMap and TreeMap</h2><p><strong>LinkedHashMap</strong><br>在HashMap的基础之上，每个entry额外保有before及after指针以记录插入顺序，从而同时维护一个所有元素组成的双向链表。完成一个有序HashMap的实现。</p>
+<p><strong>TreeMap</strong><br>本质是红黑树，插入元素时需要实现元素的compareTo()方法，打印元素时会自动根据Comparator排序。</p>
 
       
     </div>
@@ -544,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-of-HashMap"><span class="nav-number">1.</span> <span class="nav-text">Key of HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap原理"><span class="nav-number">2.</span> <span class="nav-text">HashMap原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashTable"><span class="nav-number">3.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map之ConcurrentHashMap"><span class="nav-number">4.</span> <span class="nav-text">Map之ConcurrentHashMap</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-of-HashMap"><span class="nav-number">1.</span> <span class="nav-text">Key of HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap原理"><span class="nav-number">2.</span> <span class="nav-text">HashMap原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashTable"><span class="nav-number">3.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map之ConcurrentHashMap"><span class="nav-number">4.</span> <span class="nav-text">Map之ConcurrentHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedHashMap-and-TreeMap"><span class="nav-number">5.</span> <span class="nav-text">LinkedHashMap and TreeMap</span></a></li></ol></div>
             
 
           </div>
