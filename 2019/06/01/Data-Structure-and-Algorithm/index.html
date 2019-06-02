@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="#Data Structures ##1.Array Optimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Sear">
+<meta name="description" content="Data Structures1.ArrayOptimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Search: L">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Structure and Algorithm">
 <meta property="og:url" content="http://kaixuanni.com/2019/06/01/Data-Structure-and-Algorithm/index.html">
 <meta property="og:site_name" content="Kai&#39;s blog">
-<meta property="og:description" content="#Data Structures ##1.Array Optimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Sear">
+<meta property="og:description" content="Data Structures1.ArrayOptimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Search: L">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2019-06-02T03:45:37.416Z">
+<meta property="og:updated_time" content="2019-06-02T03:48:24.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Structure and Algorithm">
-<meta name="twitter:description" content="#Data Structures ##1.Array Optimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Sear">
+<meta name="twitter:description" content="Data Structures1.ArrayOptimal for indexing, bad at searching, inserting and deleting. Dynamic array Have additional space for extra elements. Indexing: Linear array: O(1), Dynamic array: O(1)Search: L">
 
 
 
@@ -339,14 +339,11 @@
       
 
       
-        <p>#Data Structures</p>
-<p>##1.Array</p>
-<p>Optimal for indexing, bad at searching, inserting and deleting.</p>
+        <h1 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h1><h2 id="1-Array"><a href="#1-Array" class="headerlink" title="1.Array"></a>1.Array</h2><p>Optimal for indexing, bad at searching, inserting and deleting.</p>
 <p><strong>Dynamic array</strong> Have additional space for extra elements.</p>
 <p>Indexing: Linear array: O(1), Dynamic array: O(1)<br>Search: Linear array: O(n), Dynamic array: O(n)<br>Optimized Search(Binary search): Linear array: O(log n), Dynamic array: O(log n)<br>Insertion and deletion: Linear array: O(n), Dynamic array: O(n)</p>
 <p>熟悉Arrays工具类的方法如equals, sort, asList.<br>熟悉binary search.</p>
-<p>##2.Linked list</p>
-<p>Store data with node, every node has reference to next node.<br>Optimal for insertion, deletion, bad at indexing and searching.</p>
+<h2 id="2-Linked-list"><a href="#2-Linked-list" class="headerlink" title="2.Linked list"></a>2.Linked list</h2><p>Store data with node, every node has reference to next node.<br>Optimal for insertion, deletion, bad at indexing and searching.</p>
 <p><strong>Stack</strong><br>Last in first out.</p>
 <p><strong>Queue</strong><br>First in first out.</p>
 <p><strong>Doubly linked list</strong><br>Every node has two references, prev and next.</p>
@@ -354,24 +351,15 @@
 <p>Find cycle in linked list(Two pointer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public boolean hasCycle(ListNode head) &#123;</span><br><span class="line">   	if(head==null) return false;</span><br><span class="line">   	ListNode walker = head;</span><br><span class="line">   	ListNode runner = head;</span><br><span class="line">   	while(runner.next!=null &amp;&amp; runner.next.next!=null) &#123;</span><br><span class="line">       	walker = walker.next;</span><br><span class="line">       	runner = runner.next.next;</span><br><span class="line">       	if(walker==runner) return true;</span><br><span class="line">   	&#125;</span><br><span class="line">   	return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Reverse linked list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public ListNode reverseList(ListNode head) &#123;</span><br><span class="line">   	ListNode prev = null;</span><br><span class="line">   	ListNode curr = head;</span><br><span class="line">   	while(curr!=null)&#123;</span><br><span class="line">       	ListNode tmp = curr.next;</span><br><span class="line">       	curr.next = prev;</span><br><span class="line">       	prev = curr;</span><br><span class="line">       	curr = tmp;</span><br><span class="line">   	&#125;</span><br><span class="line">   	return prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Find middle of linked list(Two pointer)<br>Build queue/stack use stack/queue.</p>
-<p>##3.HashTable/HashMap</p>
-<p>Combine of array and linked list.<br>Hash collision is when two keys have same hash value output.</p>
+<h2 id="3-HashTable-HashMap"><a href="#3-HashTable-HashMap" class="headerlink" title="3.HashTable/HashMap"></a>3.HashTable/HashMap</h2><p>Combine of array and linked list.<br>Hash collision is when two keys have same hash value output.</p>
 <p>If the hash function is valid and use open hashing.<br>Searching: O(1)<br>Insertion and deletion: O(1)<br>In Java, use close hashing, worst case: O(n)</p>
-<p>##4.Tree</p>
-<p><strong>Binary search tree</strong><br>Tree like data structure and every node has two children.<br>Left child is smaller and right key is larger.</p>
+<h2 id="4-Tree"><a href="#4-Tree" class="headerlink" title="4.Tree"></a>4.Tree</h2><p><strong>Binary search tree</strong><br>Tree like data structure and every node has two children.<br>Left child is smaller and right key is larger.</p>
 <p>Indexing: O(logn)<br>Searching: O(logn)<br>Insertion and deletion: O(logn)<br>Worst case: O(n), when the compiler uses some optimization, the complexity is O(logn)</p>
 <p>Preoeder: mid-left-right<br>Inorder: left-mid-right<br>Postorder: left-right-mid</p>
 <p><strong>AVL tree</strong><br>Self-balancing search tree.<br><strong>Red-Black tree</strong><br><strong>B-Tree</strong></p>
-<p>##5.Heap</p>
-<p>#Algorithm</p>
-<p>##1.Sort algorithm</p>
-<p><strong>Insertion sort</strong><br>From the second element to the last one, check the element with all previous elements and insert it to the right place. So the first ith elements are already sorted.</p>
-<p>##2.Search<br>Binary search<br>BFS<br>DFS</p>
-<p>##3.Bit operation</p>
-<p>##4.Dynamic programming</p>
-<p>##5.Greedy</p>
-<p>##6.Union find</p>
-
+<h2 id="5-Heap"><a href="#5-Heap" class="headerlink" title="5.Heap"></a>5.Heap</h2><h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h2 id="1-Sort-algorithm"><a href="#1-Sort-algorithm" class="headerlink" title="1.Sort algorithm"></a>1.Sort algorithm</h2><p><strong>Insertion sort</strong><br>From the second element to the last one, check the element with all previous elements and insert it to the right place. So the first ith elements are already sorted.</p>
+<h2 id="2-Search"><a href="#2-Search" class="headerlink" title="2.Search"></a>2.Search</h2><p>Binary search<br>BFS<br>DFS</p>
+<h2 id="3-Bit-operation"><a href="#3-Bit-operation" class="headerlink" title="3.Bit operation"></a>3.Bit operation</h2><h2 id="4-Dynamic-programming"><a href="#4-Dynamic-programming" class="headerlink" title="4.Dynamic programming"></a>4.Dynamic programming</h2><h2 id="5-Greedy"><a href="#5-Greedy" class="headerlink" title="5.Greedy"></a>5.Greedy</h2><h2 id="6-Union-find"><a href="#6-Union-find" class="headerlink" title="6.Union find"></a>6.Union find</h2>
       
     </div>
     
@@ -455,8 +443,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Kaixuan Ni">
           <p class="site-author-name" itemprop="name">Kaixuan Ni</p>
@@ -516,6 +513,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Structures"><span class="nav-number">1.</span> <span class="nav-text">Data Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Array"><span class="nav-number">1.1.</span> <span class="nav-text">1.Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Linked-list"><span class="nav-number">1.2.</span> <span class="nav-text">2.Linked list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-HashTable-HashMap"><span class="nav-number">1.3.</span> <span class="nav-text">3.HashTable/HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Tree"><span class="nav-number">1.4.</span> <span class="nav-text">4.Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Heap"><span class="nav-number">1.5.</span> <span class="nav-text">5.Heap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Sort-algorithm"><span class="nav-number">2.1.</span> <span class="nav-text">1.Sort algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Search"><span class="nav-number">2.2.</span> <span class="nav-text">2.Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bit-operation"><span class="nav-number">2.3.</span> <span class="nav-text">3.Bit operation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Dynamic-programming"><span class="nav-number">2.4.</span> <span class="nav-text">4.Dynamic programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Greedy"><span class="nav-number">2.5.</span> <span class="nav-text">5.Greedy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Union-find"><span class="nav-number">2.6.</span> <span class="nav-text">6.Union find</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
